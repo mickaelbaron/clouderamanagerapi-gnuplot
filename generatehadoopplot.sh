@@ -2,7 +2,7 @@
 
 USER=admin
 PASSWORD=admin
-SERVER=http://s-virtualmachine2-lias:7180
+SERVER=TODO
 STARTDATE=$1
 FINISHDATE=$2
 shift 2
