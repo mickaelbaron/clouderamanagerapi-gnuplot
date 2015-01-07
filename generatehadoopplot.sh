@@ -21,8 +21,8 @@ wget -q --user=$USER --password=$PASSWORD -O $outputData/clustercpuusage.csv "$S
 
 gnuplot << EOF
 set title "CPU & Disk usage during a WordCount MapReduce execution ($# nodes, 50 Gb bigfile.txt)"
-set terminal "png" size 800,500
-set output "$outputImage/mrclustercpuio.png"
+set terminal pngcairo size 800,500
+set output "$outputImage/mrclustercpuio$#.png"
 set datafile separator ','
 set xlabel "Time (hh:mm)"
 set ylabel "Percentage (%)"
@@ -30,7 +30,7 @@ set xtics format "%H:%M"
 set xdata time
 set yrange [0:100]
 set grid x y
-plot "$outputData/clusterioutilization.csv" using (\$0*60):4 w l lt rgb "#FF0000" title 'Disk usage', "$outputData/clustercpuusage.csv" using (\$0*60):4 w l lt rgb "#0000FF" title 'CPU Usage'
+plot "$outputData/clusterioutilization.csv" using (\$0*60):4 w l lt rgb "#FF0000" title 'Disk utilization', "$outputData/clustercpuusage.csv" using (\$0*60):4 w l lt rgb "#0000FF" title 'CPU Usage'
 EOF
 
 commonglobalplot="set terminal pngcairo dashed size 800,500
